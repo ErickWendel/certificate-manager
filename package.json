@@ -5,16 +5,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js",
-    "start": "node index.js"
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
   },
   "keywords": [],
   "author": "erickwendel",
   "license": "ISC",
   "dependencies": {
-    "nightmare": "^3.0.2"
+    "nightmare": "3.0.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "electron": "^9.1.2",
+    "nodemon": "2.0.4"
   }
 }
