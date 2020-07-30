@@ -16,4 +16,4 @@ COPY --from=build /src/node_modules node_modules
 
 USER node
 
-CMD npm run dev
+CMD npm start
