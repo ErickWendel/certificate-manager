@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>certificado</title>
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css?family=Oswald:400,500,700");
+    @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,700");
+
+    .wrapper {
+      width: 1280px;
+      background-image: url("https://i.imgur.com/oDUjiqJ.jpg");
+      background-size: cover;
+      height: 800px;
+      position: relative;
+    }
+
+    .name {
+      font-family: "Oswald", sans-serif;
+      font-size: 50px;
+      text-transform: uppercase;
+      letter-spacing: 6px;
+      position: absolute;
+      top: 300px;
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+
+    .date {
+      font-family: "Oswald", sans-serif;
+      font-size: 24px;
+      position: absolute;
+      letter-spacing: 2px;
+      bottom: 110px;
+      right: 109px;
+      width: 280px;
+      text-align: center;
+      color: #222222;
+    }
+
+    .description {
+      font-family: "Raleway", sans-serif;
+      font-size: 20px;
+      position: relative;
+      top: 400px;
+      display: block;
+      width: 750px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .id {
+      font-family: "Oswald", sans-serif;
+      font-size: 12px;
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      padding-left: 50px;
+    }
+  </style>
+
+  <body>
+    <div class="wrapper">
+      <div class="name" id="name"></div>
+      <div class="description">
+        Concluiu com êxito o curso de <br />
+        Imersão em desenvolvimento de APIs com Node.js by #NodeBR <br />com
+        carga horária de <b>16 horas</b>.
+      </div>
+      <div class="date" id="date"></div>
+    </div>
+  </body>
+  <script>
+    function parseDate(str) {
+      const m = str.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+      return m ? new Date(m[3], m[2] - 1, m[1]) : null;
+    }
+    window.onload = () => {
+      const name = document.getElementById("name");
+      const date = document.getElementById("date");
+      const search = location.search.substring(1);
+      const data = JSON.parse(
+        '{"' +
+          decodeURI(search)
+            .replace(/"/g, '\\"')
+            .replace(/&/g, '","')
+            .replace(/=/g, '":"') +
+          '"}'
+      );
+      const options = { year: "numeric", month: "long", day: "numeric" };
+
+      const parsedDate = parseDate(data.at).toLocaleDateString("pt-br", options);
+      name.innerText = data.name;
+      date.innerText = parsedDate;
+    };
+  </script>
+</html>

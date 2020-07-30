@@ -1,0 +1,11 @@
+version: '2.1'
+
+services:
+  certificate-manager:
+    image: certificate-manager
+    build: .
+    volumes:
+      - .:/src
+      - nodemodules:/src/node_modules
+volumes:
+  nodemodules: {}
