@@ -6,7 +6,7 @@ const data = require('../resources/data.json')
 async function run() {
     let count = 0
     for (const item of data) {
-        item.name = `${item.name}${count++}`
+        item.id = count++
         const worker = new Worker(moduleName)
         worker.on('message', msg => console.log(msg))
         worker.on('error', console.error)

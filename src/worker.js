@@ -8,14 +8,14 @@ const nightmare = Nightmare({
 const WIDTH = 1920;
 const HEIGHT = 1080;
 
-parentPort.on('message', ({ name, at }) => {
+parentPort.on('message', ({ name, at, id }) => {
     const pid = process.pid
     console.log(`${pid} got message: ${name}`);
     nightmare
         .viewport(WIDTH, HEIGHT)
         .goto(`file://${__dirname}/../resources/certificado.html?name=${name}&at=${at}`)
         .wait(500)
-        .pdf(`${__dirname}/../output/${name}.pdf`, {
+        .pdf(`${__dirname}/../output/${name}-${id}.pdf`, {
             pageSize: "A4",
             landscape: true,
         })
